@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var axios = require("axios");
-var config = require("../common/config")
+var config = require("../config/config")
 
 /* GET home page. */
 router.get("/", function (req, res) {
