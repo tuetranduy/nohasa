@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <% include ../../partials/_header %>
+</head>
+
+<body>
+  <!-- Search Wrapper Area Start -->
+  <% include _search %>
+  <!-- Search Wrapper Area End -->
+
+  <!-- ##### Main Content Wrapper Start ##### -->
+  <div class="main-content-wrapper d-flex clearfix">
+    <!-- start side bar -->
+    <% include _sidebar %>
+    <!-- end of side bar -->
+
+    <!-- Product Catagories Area Start -->
+    <% include _product %>
+    <!-- Product Catagories Area End -->
+  </div>
+  <!-- ##### Main Content Wrapper End ##### -->
+
+  <!-- ##### Newsletter Area Start ##### -->
+  <% include _subscribeArea %>
+  <!-- ##### Newsletter Area End ##### -->
+
+  <!-- ##### Footer Area Start ##### -->
+  <footer class="footer_area clearfix">
+    <% include ../../partials/_footer %>
+  </footer>
+
+  <% include ../../partials/_scriptLoader %>
+</body>
+
+</html>
