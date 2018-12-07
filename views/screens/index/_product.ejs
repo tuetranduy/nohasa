@@ -2,122 +2,29 @@
   <div class="amado-pro-catagory clearfix">
 
     <!-- Single Catagory -->
-    <div class="single-products-catagory clearfix" onmouseover="showDescription('product1')" onmouseout="hideDescription('product1')">
-      <a href="shop.html">
-        <img src="img/bg-img/1.jpg" alt="">
+    <% for (var i = 0; i < products.length; i++) { %>
+    <% var productName = _.kebabCase(products[i].name) %>
+    <div class="single-products-catagory clearfix" onmouseover="showDescription('<%= products[i].name %>')" onmouseout="hideDescription('<%= products[i].name %>')">
+      <a href="shop/<%= productName %>">
+        <img src="<%= products[i].img %>" alt="">
         <!-- Hover Content -->
         <div class="hover-content">
           <div class="line"></div>
-          <p>From $180</p>
-          <h4>Modern Chair</h4>
-          <p class="hidden-description" id="product1">This is description</p>
+          <p>
+            <%= products[i].price %>
+          </p>
+          <h4>
+            <%= products[i].name %>
+          </h4>
+          <div class="hidden-description" id="<%= products[i].name %>">
+            <p>
+              <%= products[i].description %>
+            </p>
+            <button type="button" class="btn btn-outline-info">Add to cart</button>
+          </div>
         </div>
       </a>
     </div>
-
-    <!-- Single Catagory -->
-    <div class="single-products-catagory clearfix" onmouseover="showDescription('product2')" onmouseout="hideDescription('product2')">
-      <a href="shop.html">
-        <img src="img/bg-img/2.jpg" alt="">
-        <!-- Hover Content -->
-        <div class="hover-content">
-          <div class="line"></div>
-          <p>From $180</p>
-          <h4>Minimalistic Plant Pot</h4>
-          <p class="hidden-description" id="product2">This is description</p>
-        </div>
-      </a>
-    </div>
-
-    <!-- Single Catagory -->
-    <div class="single-products-catagory clearfix">
-      <a href="shop.html">
-        <img src="img/bg-img/3.jpg" alt="">
-        <!-- Hover Content -->
-        <div class="hover-content">
-          <div class="line"></div>
-          <p>From $180</p>
-          <h4>Modern Chair</h4>
-        </div>
-      </a>
-    </div>
-
-    <!-- Single Catagory -->
-    <div class="single-products-catagory clearfix">
-      <a href="shop.html">
-        <img src="img/bg-img/4.jpg" alt="">
-        <!-- Hover Content -->
-        <div class="hover-content">
-          <div class="line"></div>
-          <p>From $180</p>
-          <h4>Night Stand</h4>
-        </div>
-      </a>
-    </div>
-
-    <!-- Single Catagory -->
-    <div class="single-products-catagory clearfix">
-      <a href="shop.html">
-        <img src="img/bg-img/5.jpg" alt="">
-        <!-- Hover Content -->
-        <div class="hover-content">
-          <div class="line"></div>
-          <p>From $18</p>
-          <h4>Plant Pot</h4>
-        </div>
-      </a>
-    </div>
-
-    <!-- Single Catagory -->
-    <div class="single-products-catagory clearfix">
-      <a href="shop.html">
-        <img src="img/bg-img/6.jpg" alt="">
-        <!-- Hover Content -->
-        <div class="hover-content">
-          <div class="line"></div>
-          <p>From $320</p>
-          <h4>Small Table</h4>
-        </div>
-      </a>
-    </div>
-
-    <!-- Single Catagory -->
-    <div class="single-products-catagory clearfix">
-      <a href="shop.html">
-        <img src="img/bg-img/7.jpg" alt="">
-        <!-- Hover Content -->
-        <div class="hover-content">
-          <div class="line"></div>
-          <p>From $318</p>
-          <h4>Metallic Chair</h4>
-        </div>
-      </a>
-    </div>
-
-    <!-- Single Catagory -->
-    <div class="single-products-catagory clearfix">
-      <a href="shop.html">
-        <img src="img/bg-img/8.jpg" alt="">
-        <!-- Hover Content -->
-        <div class="hover-content">
-          <div class="line"></div>
-          <p>From $318</p>
-          <h4>Modern Rocking Chair</h4>
-        </div>
-      </a>
-    </div>
-
-    <!-- Single Catagory -->
-    <div class="single-products-catagory clearfix">
-      <a href="shop.html">
-        <img src="img/bg-img/9.jpg" alt="">
-        <!-- Hover Content -->
-        <div class="hover-content">
-          <div class="line"></div>
-          <p>From $318</p>
-          <h4>Home Deco</h4>
-        </div>
-      </a>
-    </div>
+    <% } %>
   </div>
 </div>
