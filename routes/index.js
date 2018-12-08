@@ -2,7 +2,8 @@ var express = require("express");
 var router = express.Router();
 var axios = require("axios");
 var config = require("../config/config")
-var _ = require('lodash');
+var _ = require("lodash");
+var logFile = require("../helper/logger");
 
 function getProducts() {
   return axios.get(config.application.API_URL + `getAllProduct`)
@@ -11,6 +12,7 @@ function getProducts() {
       return response.data.data
     }).catch(function (error) {
       console.log("Error: " + error)
+      logFile.error("getProducts: " + error)
     })
 }
 

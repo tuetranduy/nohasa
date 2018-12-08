@@ -1,16 +1,22 @@
 var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
+// default expressjs log
 var logger = require("morgan");
 var cookieParser = require("cookie-parser");
 var bodyParser = require("body-parser");
 var cache = require('memory-cache');
-
-var indexRouter = require("./routes/index");
 var _ = require('lodash');
+
+// routes
+var indexRouter = require("./routes/index");
+
+// custom log file
 var logFile = require('./helper/logger');
 
 var app = express();
+
+// use lodash in view
 app.locals._ = _;
 
 // view engine setup

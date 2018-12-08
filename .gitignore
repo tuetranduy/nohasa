@@ -63,3 +63,4 @@ typings/
 .ssh
 ssh
 package-lock.json
+log
