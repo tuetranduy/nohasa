@@ -36,22 +36,22 @@ app.use(bodyParser.json());
 let memCache = new cache.Cache();
 let cacheMiddleware = (duration) => {
   return (req, res, next) => {
-    let key = '__express__' + req.originalUrl || req.url
+    let key = '__express__' + req.originalUrl || req.url;
     let cacheContent = memCache.get(key);
     if (cacheContent) {
       res.send(cacheContent);
-      return
+      return;
     } else {
-      res.sendResponse = res.send
+      res.sendResponse = res.send;
       res.send = (body) => {
         memCache.put(key, body, duration * 1000);
-        res.sendResponse(body)
-        logFile.info("Cache is: " + body)
-      }
-      next()
+        res.sendResponse(body);
+        logFile.info("Cache is: " + body);
+      };
+      next();
     }
-  }
-}
+  };
+};
 
 app.use("/", cacheMiddleware(30), indexRouter);
 
@@ -69,7 +69,7 @@ app.use(function (err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render("error");
-  console.log("============ " + err + " ===============")
+  console.log("============ " + err + " ===============");
   logFile.error("============ " + err + " ===============");
 });
 

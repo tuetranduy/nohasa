@@ -8,12 +8,12 @@ var logFile = require("../helper/logger");
 function getProducts() {
   return axios.get(config.application.API_URL + `getAllProduct`)
     .then(response => {
-      console.log(response.data.data)
-      return response.data.data
+      console.log(response.data.data);
+      return response.data.data;
     }).catch(function (error) {
-      console.log("Error: " + error)
-      logFile.error("getProducts: " + error)
-    })
+      console.log("Error: " + error);
+      logFile.error("getProducts: " + error);
+    });
 }
 
 /* GET home page. */
@@ -28,7 +28,7 @@ router.get("/", function (req, res) {
       products: data
     });
 
-  })
+  });
 
 });
 
