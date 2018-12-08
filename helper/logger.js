@@ -1,44 +1,47 @@
-const winston = require("winston");
-const winstonRotator = require("winston-daily-rotate-file");
+'use strict';
+var winston = require('winston');
+winston.emitErrs = true;
 
-var options = {
-  file: {
-    level: 'info',
-    name: 'file.info',
-    filename: `./logs/app.log`,
-    handleExceptions: true,
-    json: true,
-    maxsize: 5242880, // 5MB
-    maxFiles: 100,
-    colorize: true,
-  },
-  errorFile: {
-    level: 'error',
-    name: 'file.error',
-    filename: `./logs/error.log`,
-    handleExceptions: true,
-    json: true,
-    maxsize: 5242880, // 5MB
-    maxFiles: 100,
-    colorize: true,
-  },
-  console: {
-    level: 'debug',
-    handleExceptions: true,
-    json: false,
-    colorize: true,
-  },
-};
-
-
-// your centralized logger object
-let logger = new(winston.Logger)({
+var logger = new winston.Logger({
   transports: [
-    new(winston.transports.Console)(options.console),
-    new(winston.transports.File)(options.errorFile),
-    new(winston.transports.File)(options.file)
+    new(winston.transports.File)({
+      handleExceptions: true,
+      json: true,
+      colorize: true,
+      filename: './logs/logfile.log',
+      timestamp: function () {
+        var date = new Date();
+
+        var hour = date.getUTCHours();
+        hour = (hour < 10 ? '0' : '') + hour;
+
+        var min = date.getUTCMinutes();
+        min = (min < 10 ? '0' : '') + min;
+
+        var sec = date.getUTCSeconds();
+        sec = (sec < 10 ? '0' : '') + sec;
+
+        var year = date.getUTCFullYear();
+
+        var month = date.getUTCMonth() + 1;
+        month = (month < 10 ? '0' : '') + month;
+
+        var day = date.getUTCDate();
+        day = (day < 10 ? '0' : '') + day;
+
+        var millisecond = date.getUTCMilliseconds();
+
+        return year + '-' + month + '-' + day + ' ' + hour + ':' + min + ':' + sec + '.' + millisecond;
+
+      },
+      formatter: function (options) {
+        // Return string will be passed to logger.
+        return options.timestamp() + ' ' + options.level.toUpperCase() + ' ' + (undefined !== options.message ? options.message : '') +
+          (options.meta && Object.keys(options.meta).length ? '\n\t' + JSON.stringify(options.meta) : '');
+      }
+    })
   ],
-  exitOnError: false, // do not exit on handled exceptions
+  exitOnError: false
 });
 
-module.exports = logger;
+module.exports = logger

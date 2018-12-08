@@ -1,13 +1,14 @@
 var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
-var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+var cookieParser = require("cookie-parser");
 var bodyParser = require("body-parser");
 var cache = require('memory-cache');
 
 var indexRouter = require("./routes/index");
 var _ = require('lodash');
+var logFile = require('./helper/logger');
 
 var app = express();
 app.locals._ = _;
@@ -39,7 +40,7 @@ let cacheMiddleware = (duration) => {
       res.send = (body) => {
         memCache.put(key, body, duration * 1000);
         res.sendResponse(body)
-        console.log("Cache is: " + body)
+        logFile.info("Cache is: " + body)
       }
       next()
     }
@@ -63,6 +64,7 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render("error");
   console.log("============ " + err + " ===============")
+  logFile.error("============ " + err + " ===============");
 });
 
 module.exports = app;
